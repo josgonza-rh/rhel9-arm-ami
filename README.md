@@ -140,6 +140,20 @@ qemu-img convert rhel-baseos-9.0-beta-5-aarch64-kvm.qcow2 rhel-baseos-9.0-beta-5
     where `[import-id]` is the result of the previous `import-snapshot` command and is similar to `import-snap-0653e0dd9a4f3d760`.
     > ![NOTE](images/note-icon.png) **NOTE**: You can find the content of [container.json](utils/container.json) in this repo (you only have to change the content based on the name of the S3 bucket and the image if you decide to use a custom one).
 
+5. Register the image:
+
+    ```bash
+    aws ec2 register-image \
+    --name RHEL9-baseos-arm64 \
+    --architecture arm64 \
+    --virtualization-type hvm \
+    --ena-support \
+    --root-device-name /dev/xvda \
+    --block-device-mappings DeviceName=/dev/xvda,Ebs={SnapshotId=snap-0d3e61728b16d7f48}
+    ```
+
+    > ![NOTE](images/note-icon.png) **NOTE**: You can get the `SnapshotId` value from the `describe-import-snapshot-tasks` command above.
+
 We are now ready to launch EC2 instances with our custom AMI !
 
 For more information on all the possibilities concerning the launch of EC2 instances, please refer to the following link in the official AWS documentation: [Launching, listing, and terminating Amazon EC2 instances](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-ec2-instances.html).
