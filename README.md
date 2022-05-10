@@ -14,7 +14,7 @@ The rest of this document describes how to import `qcow2` images into AWS as a `
 
 > ![TIP](images/tip-icon.png) **TIP**: The Linux host would be preferably running on AWS for faster data transfer to and from S3.
 
-1. Install `qemu-utils` package to get the `qemu-img` tool following the RHEL 8 official documentation [Enabling virtualization](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_and_managing_virtualization/index#enabling-virtualization-in-rhel8_virt-getting-started) (or the documentation of the linux-based distro of your choice).
+1. Install `qemu` software to get the `qemu-img` tool following the RHEL 8 official documentation: [Enabling virtualization](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_and_managing_virtualization/index#enabling-virtualization-in-rhel8_virt-getting-started) (or the documentation of the linux-based distro of your choice).
 
 2. Download the RHEL 9 image from the official site [About Red Hat Enterprise Linux for ARM 64 Beta](https://access.redhat.com/downloads/content/363/ver=/rhel---9/9.0%20Beta/aarch64/product-software).
 
@@ -157,3 +157,5 @@ qemu-img convert rhel-baseos-9.0-beta-5-aarch64-kvm.qcow2 rhel-baseos-9.0-beta-5
 We are now ready to launch EC2 instances with our custom AMI !
 
 For more information on all the possibilities concerning the launch of EC2 instances, please refer to the following link in the official AWS documentation: [Launching, listing, and terminating Amazon EC2 instances](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-ec2-instances.html).
+
+But if you want to know how the story continues, you can see how I use this AMI to deploy a [Graviton](https://aws.amazon.com/ec2/graviton/) instance on AWS (`EC2` based on `ARM` architecture), install and configure `Image Builder` and create a custom image of `RHEL 9 for Edge` with `MicroShift` to be deployed on a `Raspberry PI 4`: [How to create your Red Hat Enterprise Linux 9 for ARM 64 image with MicroShift using Image Builder](https://github.com/josgonza-rh/rhel9-arm-microshift).
