@@ -154,6 +154,8 @@ qemu-img convert rhel-baseos-9.0-beta-5-aarch64-kvm.qcow2 rhel-baseos-9.0-beta-5
 
     > ![NOTE](images/note-icon.png) **NOTE**: You can get the `SnapshotId` value from the `describe-import-snapshot-tasks` command above.
 
+## Final Thoughts
+
 We are now ready to launch EC2 instances with our custom AMI !
 
 For more information on all the possibilities concerning the launch of EC2 instances, please refer to the following link in the official AWS documentation: [Launching, listing, and terminating Amazon EC2 instances](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-ec2-instances.html).
