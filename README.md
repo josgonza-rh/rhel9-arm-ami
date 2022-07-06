@@ -154,6 +154,22 @@ qemu-img convert rhel-baseos-9.0-beta-5-aarch64-kvm.qcow2 rhel-baseos-9.0-beta-5
 
     > ![NOTE](images/note-icon.png) **NOTE**: You can get the `SnapshotId` value from the `describe-import-snapshot-tasks` command above.
 
+Now with the help of the `aws ec2 run-instances` command you can run EC2 instances of your custom/golden image ! Ex.
+
+```bash
+aws ec2 run-instances \
+    --image-id ami-[the-id-of-your-ami] \
+    --instance-type t4g.medium \
+    --subnet-id subnet-[the-id-of-your-subnet] \
+    --security-group-ids sg-[the-id-of-you-security-group] \
+    --associate-public-ip-address \
+    --key-name [the-name-of-your-ssh-key] \
+    --block-device-mappings "[{\"DeviceName\":\"/dev/xvda\",\"Ebs\":{\"VolumeSize\":60,\"DeleteOnTermination\":true}}]" \
+    --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=image-builder}]'
+```
+
+> ![TIP](images/tip-icon.png) **TIP**: import your own ssh keys by using the [aws ec2 import-key-pair](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/ec2/import-key-pair.html) command.
+
 ## Final Thoughts
 
 We are now ready to launch EC2 instances with our custom AMI !
